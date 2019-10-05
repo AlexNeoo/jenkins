@@ -15,7 +15,7 @@ node {
         /* Test ngnix image in docker container */
         app.withRun('-p 80:80') { c ->
         /* Run simple curl test */
-        sh 'curl 172.17.0.1'
+        sh 'curl 172.17.0.1' }
         }                 
    
     stage('Run docker container') {
