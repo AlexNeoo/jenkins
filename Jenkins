@@ -7,8 +7,8 @@ node {
     }
 
     stage('Build custom ngnix image') {
-        /* This builds the custom image from Dockerfile*/
-        app = docker.build("jenkins")
+        /* This builds image from Dockerfile with welcome.html start page*/
+        app = docker.build("ngnix-welcome")
     }
 
     stage('Test image') {
