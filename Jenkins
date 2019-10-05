@@ -13,7 +13,7 @@ node {
 
     stage('Test image') {
         /* Run ngnix image */
-        docker.image('ngnix-welcome:latest').withRun('-p 80:80 --rm') { c ->
+        docker.image('ngnix-welcome:latest').withRun('-p 80:80') { c ->
         /* Run curl test */
         /*sh 'curl 172.17.0.1'*/
         /*sh 'echo $?'*/
