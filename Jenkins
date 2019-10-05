@@ -15,7 +15,10 @@ node {
         /* Run ngnix image */
         docker.image('ngnix-welcome:latest').withRun('-p 80:80 --rm') { c ->
         /* Run curl test */
-        sh 'curl 172.17.0.1 || exit 0' 
+        sh 'curl 172.17.0.1; res=$?;
+        if test "$res" != "0";
+        then echo "the curl command failed with: $res"
+        fi' 
         }             
     }
 }
