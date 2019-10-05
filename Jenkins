@@ -10,16 +10,16 @@ node {
         /* This builds ngnix image from Dockerfile with welcome.html start page from repo*/
         app = docker.build("ngnix-welcome")
     }
-               
-    stage('Test image') {
-        /* Run simple curl test */
-        app.withRun {
-        sh 'curl 172.17.0.1'
-        }
-    }
     
+    stage('Test image') {
+        /* Test ngnix image in docker container */
+        app.withRun('-p 80:80') { c ->
+        /* Run simple curl test */
+        sh 'curl 172.17.0.1'
+        }                 
+   
     stage('Run docker container') {
-        /* Run ngnix image in docker container on EC2 instance */
+        /* if test passed Run ngnix image in docker container on EC2 instance */
         sh 'docker container run -d -p 80:80 --rm ngnix-welcome:latest'
     }  
 }
